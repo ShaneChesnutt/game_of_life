@@ -1,0 +1,10 @@
+{
+  "*.js": {
+    "alternate": "{dirname}/__tests__/{basename}_spec.js",
+    "type": "test"
+  },
+  "**/__tests__/*_spec.js": {
+    "alternate": "{}.js",
+    "type": "source"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "game_of_life",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node --env-file=.env src/index.js",
+    "debug": "node --env-file=.env --inspect-brk src/index.js",
+    "test": "jest",
+    "watch": "jest --watchAll"
+  },
+  "author": "Shane Chesnutt",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
