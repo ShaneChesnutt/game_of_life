@@ -1,7 +1,9 @@
 const Entity = require('./entity');
 
-const DEAD_SYMBOL = '.'
-const ALIVE_SYMBOL = '#'
+const CELL_STATE_SYMBOLS = {
+  DEAD: '.',
+  ALIVE: '#',
+};
 
 class Board {
   constructor(length, width) {
@@ -16,14 +18,14 @@ class Board {
     for (let i = 0; i < this.length; i++) {
       this.grid[i] ||= [];
       for (let j = 0; j < this.width; j++) {
-        this.grid[i][j] = DEAD_SYMBOL;
+        this.grid[i][j] = CELL_STATE_SYMBOLS.DEAD;
       }
     }
   }
 
   addEntity(y, x) {
     this.entities.push(new Entity(y, x));
-    this.grid[y][x] = ALIVE_SYMBOL;
+    this.grid[y][x] = CELL_STATE_SYMBOLS.ALIVE;
   }
 
   evolveBoard() {
@@ -59,7 +61,7 @@ class Board {
   }
 
   #gridPointContainsDeadCell(point) {
-    return this.grid[point.y][point.x] === DEAD_SYMBOL;
+    return this.grid[point.y][point.x] === CELL_STATE_SYMBOLS.DEAD;
   }
 
   #pointToKey(point) {
@@ -91,7 +93,7 @@ class Board {
   }
 
   #removeEntityFromGrid(y, x) {
-    this.grid[y][x] = DEAD_SYMBOL;
+    this.grid[y][x] = CELL_STATE_SYMBOLS.DEAD;
   }
 
   hasNoEntities() {
@@ -106,6 +108,10 @@ class Board {
     }
 
     return display;
+  }
+
+  static get CELL_STATE_SYMBOLS() {
+    return CELL_STATE_SYMBOLS;
   }
 }
 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`board addEntity adds an empty space to the board 1`] = `
+exports[`board addEntity adds an living cell to the board 1`] = `
 "...
 .#.
 ...
