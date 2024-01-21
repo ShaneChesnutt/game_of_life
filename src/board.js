@@ -5,7 +5,15 @@ const CELL_STATE_SYMBOLS = {
   ALIVE: '#',
 };
 
+/**
+ * @class
+ * @classdesc The board that game is played on.
+ */
 class Board {
+  /**
+   * @param {number} length - The size of the y-axis of the grid.
+   * @param {number} width  - The size of the x-axis of the grid.
+   */
   constructor(length, width) {
     this.length = length;
     this.width = width;
@@ -23,11 +31,24 @@ class Board {
     }
   }
 
+  /**
+   * @param {number} y - The target y-axis point of the entity to add. From 0 to
+   * grid y-axis length.
+   * @param {number} x - The target x-axis point of the entity to add. From 0 to
+   * grid x-axis length.
+   */
   addEntity(y, x) {
     this.entities.push(new Entity(y, x));
     this.grid[y][x] = CELL_STATE_SYMBOLS.ALIVE;
   }
 
+  /**
+   * Updates the board/entities based on the following rules:
+   * - Any living cell with less than two living neighbors is removed.
+   * - Any living cell with more than three living neighbors is removed.
+   * - Any living cell with two or three living neighbors is stays in the game.
+   * - Any dead cell with exactly three living neighbors is added to the game.
+   */
   evolveBoard() {
     const deadCellsWithAliveNeighbors = {};
 
@@ -96,10 +117,16 @@ class Board {
     this.grid[y][x] = CELL_STATE_SYMBOLS.DEAD;
   }
 
+  /**
+   * @returns {Boolean} Whether the board contains living entities.
+   */
   hasNoEntities() {
     return this.entities.length === 0;
   }
 
+  /**
+   * @returns {String} A string representation of the board/grid.
+   */
   show() {
     let display = "";
 
@@ -110,6 +137,9 @@ class Board {
     return display;
   }
 
+  /**
+   * @returns {Object} The symbols used for living and dead grid cells.
+   */
   static get CELL_STATE_SYMBOLS() {
     return CELL_STATE_SYMBOLS;
   }
